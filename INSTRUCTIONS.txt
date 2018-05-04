@@ -1,0 +1,32 @@
+1) 
+- Set the power supply to 12 V and connect it to the TOFPET board.
+- Turn on the power supply.
+- Make sure the sensors are inside a light-tight box.
+
+2) 
+cd /home/cmsdaq/TOFPET/sw_daq_tofpet2
+
+3) 
+Open a linux terminal and connect the TOFPET to the PC with this command:
+./connect_TOFPET.sh
+
+- The displays shows:
+cmsdaq@pccmsdaq01:~/TOFPET/sw_daq_tofpet2$ ./connect_TOFPET.sh 
+Size of frame is 16384
+Got FPGA reply
+FrameServer::startWorker called...
+FrameServer::startWorker exiting...
+UDPFrameServer::runWorker starting...
+
+Open a second linux terminal and start a new run with this command:
+./run_TOFPET.sh config.ini qdc 60 data/output/Run000003_04_05_2018_NoSource
+
+- You should provide exactly 4 arguments. Help is provided in case you give the wrong number of arguments.
+- The code runs the data acquistion. At the end of the acquisition, two root files are automatically created in the output directory specified: 
+a) a root file where every event is a single channel over threshold (_singles.root) 
+b) a root file where every event contains data from 2 channels that have registered a signal in time coincidence (_coincidences.root)
+
+4) 
+Write your own analysis macro on these root files using the ROOT program.
+
+
